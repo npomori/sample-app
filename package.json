@@ -1,0 +1,41 @@
+{
+  "name": "astro-webauthn-app2",
+  "description": "Participant app that verifies session handoff from a WebAuthn authentication server",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pnpm run env:check:build",
+    "preview": "astro preview",
+    "start": "node ./dist/server/entry.mjs",
+    "format": "prettier -w .",
+    "lint": "eslint .",
+    "env:check:build": "esbuild astro-participant-auth/env-check --bundle --platform=node --format=esm --outfile=dist/env-check.mjs"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.9",
+    "astro": "^7.4.5",
+    "astro-participant-auth": "file:../astro-participant-auth",
+    "hono": "^4.13.16",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.4",
+    "@types/node": "^26.6.6",
+    "@typescript-eslint/parser": "^8.72.1",
+    "astro-eslint-parser": "^3.2.0",
+    "esbuild": "0.28.2",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^3.2.1",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.2",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4.3.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1"
+  }
+}

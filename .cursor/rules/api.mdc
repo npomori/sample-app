@@ -1,0 +1,14 @@
+---
+description: 業務の更新
+globs: src/fetch.ts
+alwaysApply: false
+---
+
+# API
+
+- ライブラリが `POST /logout` を登録する。アプリ側では繰り返さない。
+- 業務の更新は `mutations` にメソッドとパスを足し、同じパスを `routes` で登録する。`/api` や `src/pages/api` は使わない。
+- 許可リストに無いパスは、登録しても入場ミドルウェアが 404「見つかりません」にする。
+- `Origin` が `APP_ORIGIN` と完全一致しない更新は 403「オリジンが不正です」。
+- 未認証の更新は 401「ログインが必要です」。引き渡しへは送らない。
+- ブラウザの API 呼び出しは同一オリジンだけ。他オリジン向けの `Access-Control-Allow-Credentials` は返さない。

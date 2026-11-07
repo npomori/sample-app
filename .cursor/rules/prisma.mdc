@@ -1,0 +1,11 @@
+---
+description: 共有テーブルとアプリ内ロール
+alwaysApply: true
+---
+
+# Prisma / DB
+
+- 共有4テーブルのクライアントは `astro-participant-auth` が持つ。このリポジトリで `prisma generate` しない。
+- 共有スキーマに列を足さない。`User.password` とパスキーの公開鍵材料は読まない。
+- アプリ内ロールは、`public` 以外のスキーマに `User.id` をキーにして置く。そのスキーマだけ、このアプリがマイグレーションする。
+- 共有クライアントへ、アプリのモデルは足さない。`AppGrant` には書かない。

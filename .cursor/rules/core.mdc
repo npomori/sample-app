@@ -1,0 +1,25 @@
+---
+description: スタック、配置、スタイル、仕様の正本
+alwaysApply: true
+---
+
+# コア規約
+
+- これは認証サーバー [astro-user-webauthn2](https://github.com/czbone/astro-user-webauthn2) の参加アプリ。認証の骨格は `astro-participant-auth`。Astro 7 SSR + Node アダプター。画面はサーバー描画の HTML。
+- 入場、Cookie、セッション、共有テーブルの参照、`/callback`、`/logged-out`、`/grants`、`/roles` はライブラリにある。このリポジトリへ戻さない。
+- エントリは `src/fetch.ts`。仮想モジュールと業務の更新を `createParticipantFetch` へ渡すだけ。処理順はライブラリが固定する。`POST /logout` をアプリ側で繰り返さない。
+- 業務画面は `src/pages`。ヘッダの表示名は integration の `displayName`。画面へ直書きしない。
+- 共有テーブルの Prisma Client はライブラリが生成する。アプリのモデルは足さない。アプリ内ロールは、定義するとき `public` 以外のスキーマをこのアプリがマイグレーションする。
+- 公開パスを足さない。スタイルは Tailwind CSS 4。パッケージマネージャは pnpm。
+- 仕様の正本: 認証サーバーの `planning/participant-app.md`、`planning/multi-app-auth.md`、`planning/app-permissions/`、`planning/auth-app-role-authorization-spec.md`。このリポジトリでは `docs/`。
+
+## スタイル
+
+- アプリ内の import は `@/*`。TypeScript strict。`any` 禁止。
+- セミコロンなし、シングルクォート。UI / エラーメッセージは日本語。
+
+## コマンド
+
+`pnpm dev` / `pnpm lint` / `pnpm build`
+
+骨格のテストと `pnpm db:generate` は `astro-participant-auth` で実行する。
