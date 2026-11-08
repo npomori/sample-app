@@ -1,12 +1,12 @@
 # 参加アプリの作り方
 
-このリポジトリは、認証サーバーに連携する参加アプリの参考実装です。認証の骨格はパッケージ `astro-participant-auth` です。新しい参加アプリは、そのパッケージに依存し、識別子と業務画面を置きます。
+このリポジトリは、認証サーバーに連携する参加アプリの参考実装です。認証の骨格はパッケージ `participant-app-base` です。新しい参加アプリは、そのパッケージに依存し、識別子と業務画面を置きます。
 
 手順は次です。
 
 1. Astro のサーバー描画プロジェクトを作る。このリポジトリを業務画面の例にする
 2. 認証サーバーへアプリを登録する
-3. `astro-participant-auth` に依存する。公開するまでは、リポジトリを隣に置き `file:../participant-app-base` で依存する
+3. 依存先 `participant-app-base` は、公開するまでは隣のリポジトリを `file:../participant-app-base` で入れる
 4. `APP_ID` とオリジンを変える
 5. integration、`src/fetch.ts`、`src/env.d.ts`、CSS の `@source` を接続する
 6. 業務画面を置く
@@ -30,7 +30,7 @@
 - `POST /logout`
 - 共有テーブルの参照
 
-これらは `astro-participant-auth` が実装します。参加アプリが担わない機能は次のとおりです。
+これらは `participant-app-base` が実装します。参加アプリが担わない機能は次のとおりです。
 
 - ログイン、パスキー儀式、メール、ユーザー作成
 - `App` と `AppGrant` の作成と変更
@@ -51,7 +51,7 @@
 
 アプリごとに変える値は、[.env.example](../.env.example) の `APP_ID` と `APP_ORIGIN` です。`AUTH_ORIGIN` は認証サーバーのオリジンのままにします。これら2つのオリジンには、それぞれ異なる値を設定します。ホスト専用 Cookie はポート番号では分離されないため、`localhost` の別ポートではなく、別のホスト名を使います。
 
-`APP_ID` は `^[a-z0-9-]{1,32}$` です。検証は `astro-participant-auth` が行います。
+`APP_ID` は `^[a-z0-9-]{1,32}$` です。検証は `participant-app-base` が行います。
 
 PostgreSQL と Redis の接続文字列、許す操作、`REDIS_KEY_PREFIX` と `SESSION_MAX_AGE_SECONDS` は [connections.md](connections.md) です。起動コマンドはリポジトリの [README](../README.md) です。共有テーブルのロール作成とマイグレーションは、このアプリでは実行しません。共有テーブルの Prisma Client はライブラリが生成します。
 
@@ -62,7 +62,7 @@ PostgreSQL と Redis の接続文字列、許す操作、`REDIS_KEY_PREFIX` と 
 ```ts
 import { App } from 'astro/app'
 import { actions, middleware, pages } from 'astro/hono'
-import { createParticipantFetch } from 'astro-participant-auth'
+import { createParticipantFetch } from 'participant-app-base'
 
 export default createParticipantFetch({
   App,
@@ -92,12 +92,12 @@ integrations: [
 ```ts
 declare namespace App {
   interface Locals {
-    access: import('astro-participant-auth').PageAccess
+    access: import('participant-app-base').PageAccess
   }
 }
 ```
 
-参加アプリの CSS は、ライブラリの `.astro` を `@source` の対象に含めます。この参考実装は [src/styles/global.css](../src/styles/global.css) から、隣の `participant-app-base/src` を指します。`--color-brand` もここに1つ書きます。ライブラリのレイアウトは `virtual:astro-participant-auth/global.css` を、このファイルへ解決します。ファイルが無いときはビルドを止めます。
+参加アプリの CSS は、ライブラリの `.astro` を `@source` の対象に含めます。この参考実装は [src/styles/global.css](../src/styles/global.css) から、隣の `participant-app-base/src` を指します。`--color-brand` もここに1つ書きます。ライブラリのレイアウトは `virtual:participant-app-base/global.css` を、このファイルへ解決します。ファイルが無いときはビルドを止めます。
 
 分岐の一覧は [access.md](access.md) です。入場、引き渡し、ログアウト、`/callback`、`/logged-out`、`/grants`、`/roles`、共有テーブルの参照はライブラリにあります。
 
@@ -143,6 +143,6 @@ if (access.kind === 'public') throw new Error('画面の権限が解決されて
 
 ## 確認
 
-登録したあとの手動確認は [verification.md](verification.md) です。骨格の自動テストは `astro-participant-auth` で実行します。分け方は [testing.md](testing.md) です。
+登録したあとの手動確認は [verification.md](verification.md) です。骨格の自動テストは `participant-app-base` で実行します。分け方は [testing.md](testing.md) です。
 
 `APP_ID` やオリジンを変えたアプリの統合テストは、ライブラリが上書きする `APP_ID=app` などの値を、そのアプリの値に合わせます。定数はライブラリの `src/test/integration-env.ts` です。

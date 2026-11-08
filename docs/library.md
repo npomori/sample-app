@@ -1,6 +1,6 @@
 # ライブラリ化
 
-この資料は、参考実装の認証骨格をライブラリへ移し、以降の参加アプリがそのライブラリに依存する手順です。パッケージ名は `astro-participant-auth` です。新しい参加アプリの接続は [building.md](building.md) です。
+この資料は、参考実装の認証骨格をライブラリへ移し、以降の参加アプリがそのライブラリに依存する手順です。パッケージ名は `participant-app-base` です。新しい参加アプリの接続は [building.md](building.md) です。
 
 プロトコルの正本は [building.md](building.md) と同じです。判定の分岐は [access.md](access.md)、接続の制限は [connections.md](connections.md)、確認は [verification.md](verification.md) と [testing.md](testing.md) です。この資料は、その表と手順を写しません。
 
@@ -29,7 +29,7 @@
 - 仮想モジュールをライブラリへ渡す [src/fetch.ts](../src/fetch.ts)
 - `App.Locals` の接続。型の定義は [src/env.d.ts](../src/env.d.ts)
 
-パッケージ名は `astro-participant-auth` です。移し終えた実装はこのパッケージにあり、下のパスは移す前のこのリポジトリの場所です。
+パッケージ名は `participant-app-base` です。移し終えた実装はこのパッケージにあり、下のパスは移す前のこのリポジトリの場所です。
 
 ## リクエスト処理
 
@@ -49,7 +49,7 @@
 ```ts
 import { App } from 'astro/app'
 import { actions, middleware, pages } from 'astro/hono'
-import { createParticipantFetch } from 'astro-participant-auth'
+import { createParticipantFetch } from 'participant-app-base'
 
 export default createParticipantFetch({
   App,
@@ -77,7 +77,7 @@ export default createParticipantFetch({
 ```ts
 declare namespace App {
   interface Locals {
-    access: import('astro-participant-auth').PageAccess
+    access: import('participant-app-base').PageAccess
   }
 }
 ```

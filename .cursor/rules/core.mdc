@@ -5,7 +5,7 @@ alwaysApply: true
 
 # コア規約
 
-- これは認証サーバー [astro-user-webauthn2](https://github.com/czbone/astro-user-webauthn2) の参加アプリ。認証の骨格は `astro-participant-auth`。Astro 7 SSR + Node アダプター。画面はサーバー描画の HTML。
+- これは認証サーバー [astro-user-webauthn2](https://github.com/czbone/astro-user-webauthn2) の参加アプリ。認証の骨格は `participant-app-base`。Astro 7 SSR + Node アダプター。画面はサーバー描画の HTML。
 - 入場、Cookie、セッション、共有テーブルの参照、`/callback`、`/logged-out`、`/grants`、`/roles` はライブラリにある。このリポジトリへ戻さない。
 - エントリは `src/fetch.ts`。仮想モジュールと業務の更新を `createParticipantFetch` へ渡すだけ。処理順はライブラリが固定する。`POST /logout` をアプリ側で繰り返さない。
 - 業務画面は `src/pages`。公開ページは `FrontLayout`、管理ページは `AdminLayout`。ヘッダの表示名は integration の `displayName`。画面へ直書きしない。
@@ -22,4 +22,4 @@ alwaysApply: true
 
 `pnpm dev` / `pnpm lint` / `pnpm build`
 
-骨格のテストと `pnpm db:generate` は `astro-participant-auth` で実行する。
+骨格のテストと `pnpm db:generate` は `participant-app-base` で実行する。

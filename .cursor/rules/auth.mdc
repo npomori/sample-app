@@ -5,7 +5,7 @@ alwaysApply: true
 
 # 認証・権限
 
-- 実装は `astro-participant-auth`。このリポジトリでセッションや共有テーブルを再実装しない。
+- 実装は `participant-app-base`。このリポジトリでセッションや共有テーブルを再実装しない。
 - ログイン、パスキー、招待、ユーザー作成、`App` / `AppGrant` の変更は認証サーバーだけが行う。
 - 未ログインの画面は `{AUTH_ORIGIN}/auth/handoff` へ送る。`/callback` と `/logged-out`、および integration の `publicPaths` に一致する GET と HEAD からは引き渡しを始めない。このアプリの `publicPaths` は `/`。
 - セッション Cookie は `__Host-session`。引き渡しの一時 Cookie は `__Host-handoff`。どちらも `Domain` を付けない。

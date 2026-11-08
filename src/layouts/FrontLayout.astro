@@ -4,8 +4,8 @@ interface Props {
 }
 
 const { title } = Astro.props
-import 'virtual:astro-participant-auth/global.css'
-import { displayName } from 'virtual:astro-participant-auth/config'
+import 'virtual:participant-app-base/global.css'
+import { displayName } from 'virtual:participant-app-base/config'
 
 Astro.response.headers.set('Cache-Control', 'no-store')
 ---

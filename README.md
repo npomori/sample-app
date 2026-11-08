@@ -2,7 +2,7 @@
 
 [astro-user-webauthn2](https://github.com/czbone/astro-user-webauthn2) の認証サーバーに連携する参加アプリです。ログイン、パスキー、ユーザー作成は行いません。仕様は [participant-app.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant-app.md)、[multi-app-auth.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/multi-app-auth.md)、[app-permissions](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/app-permissions/README.md)、[ロールと認可](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/auth-app-role-authorization-spec.md) です。
 
-認証の骨格はパッケージ [astro-participant-auth](../participant-app-base) です。新しい参加アプリの作り方は [docs/building.md](docs/building.md) です。
+認証の骨格はパッケージ [participant-app-base](../participant-app-base) です。新しい参加アプリの作り方は [docs/building.md](docs/building.md) です。
 
 公開の `/` 以外で未ログインの画面は認証サーバーの引き渡しへ送り、`/callback` でコードを消費してホスト専用の `__Host-session` を発行します。入場は実効許可が `allow` のときだけです。入場後の画面分けは共通ロール `User.role` を見ます。
 
@@ -50,7 +50,7 @@ cp .env.example .env
 pnpm dev
 ```
 
-`pnpm install` は、隣にある `participant-app-base` を `file:` で入れます。パッケージ名は `astro-participant-auth` です。共有テーブルの Prisma Client は、そのパッケージの `prepare` が生成します。
+`pnpm install` は、隣にある `participant-app-base` を `file:` で入れます。共有テーブルの Prisma Client は、そのパッケージの `prepare` が生成します。
 
 ブラウザでは `http://app.localhost:4000` を開きます。`localhost` の別ポートではホスト専用 Cookie が混ざるため、ホスト名で分けます。
 
@@ -62,7 +62,7 @@ pnpm dev
 | `pnpm lint`  | ESLint                                    |
 | `pnpm build` | 本番ビルド                                |
 
-骨格のユニットテスト、統合テスト、`db:generate` は `astro-participant-auth` で実行します。接続先と準備は [docs/testing.md](docs/testing.md) です。共有テーブルの変更は認証サーバーだけが行います。`db:migrate` と `db:seed` はありません。
+骨格のユニットテスト、統合テスト、`db:generate` は `participant-app-base` で実行します。接続先と準備は [docs/testing.md](docs/testing.md) です。共有テーブルの変更は認証サーバーだけが行います。`db:migrate` と `db:seed` はありません。
 
 本番イメージのビルドコンテキストは、このリポジトリと `participant-app-base` の親ディレクトリです。公開するまでは `file:` 依存を解決するため、このリポジトリ単体をコンテキストにしません。
 

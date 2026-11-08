@@ -4,8 +4,8 @@ interface Props {
 }
 
 const { title } = Astro.props
-import 'virtual:astro-participant-auth/global.css'
-import { displayName } from 'virtual:astro-participant-auth/config'
+import 'virtual:participant-app-base/global.css'
+import { displayName } from 'virtual:participant-app-base/config'
 
 const access = Astro.locals.access
 const hasSession = access.kind === 'ok' || access.kind === 'no-grant'

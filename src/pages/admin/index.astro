@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/AdminLayout.astro'
-import { roleLabel } from 'astro-participant-auth'
+import { roleLabel } from 'participant-app-base'
 
 const access = Astro.locals.access
 if (access.kind === 'public') throw new Error('画面の権限が解決されていません')

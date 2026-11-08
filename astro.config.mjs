@@ -1,6 +1,6 @@
 import node from '@astrojs/node'
 import tailwindcss from '@tailwindcss/vite'
-import participantAuth from 'astro-participant-auth/integration'
+import participantAuth from 'participant-app-base/integration'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({

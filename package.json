@@ -11,12 +11,12 @@
     "start": "node ./dist/server/entry.mjs",
     "format": "prettier -w .",
     "lint": "eslint .",
-    "env:check:build": "esbuild astro-participant-auth/env-check --bundle --platform=node --format=esm --outfile=dist/env-check.mjs"
+    "env:check:build": "esbuild participant-app-base/env-check --bundle --platform=node --format=esm --outfile=dist/env-check.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.11",
     "astro": "^7.4.7",
-    "astro-participant-auth": "file:../participant-app-base",
+    "participant-app-base": "file:../participant-app-base",
     "hono": "^4.13.17",
     "pg": "^8.23.1"
   },
