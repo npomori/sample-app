@@ -1,6 +1,6 @@
 # 参加アプリ
 
-本ファイルでは、利用許可に関して参加アプリが担う処理を定めます。実効許可の判定には、[grant.md](grant.md) の手順だけを使います。引き渡しコードの消費、Cookie、ログアウト、オリジン検査は、認証サーバーの [participant-app.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant-app.md) に従います。
+本ファイルでは、利用許可に関して参加アプリが担う処理を定めます。実効許可の判定には、[grant.md](grant.md) の手順だけを使います。引き渡しコードの消費、Cookie、ログアウト、オリジン検査は、認証サーバーの [participant-app.md](https://github.com/npomori/auth-server/blob/main/planning/participant-app.md) に従います。
 
 参加アプリは `App` と `AppGrant` を参照しますが、行の作成、既定の変更、マイグレーションは行いません。
 
@@ -39,7 +39,7 @@ allow
   → 画面のリクエストでは、セッションの有効期限を延長し（EXPIRE）、Cookie の Max-Age を更新する
 ```
 
-未認証の画面リクエストでは引き渡しを開始します。公開と定めたパスは認証サーバーの [participant-public-pages.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant-public-pages.md) に従い、引き渡しを開始しません。未認証の更新リクエストには 401「ログインが必要です」を返し、引き渡しは開始しません。
+未認証の画面リクエストでは引き渡しを開始します。公開と定めたパスは認証サーバーの [participant-public-pages.md](https://github.com/npomori/auth-server/blob/main/planning/participant-public-pages.md) に従い、引き渡しを開始しません。未認証の更新リクエストには 401「ログインが必要です」を返し、引き渡しは開始しません。
 
 入場できたあとの操作は、次で分けます。クライアントが送ったロール名は使いません。
 

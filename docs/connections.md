@@ -6,7 +6,7 @@
 
 ## PostgreSQL
 
-管理者が、認証サーバーと同じデータベースへロール `app_participant` を一度作ります。アプリを増やすたびにロールは作りません。ひな型は認証サーバーの [participant-access.sql](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant/participant-access.sql) です。`CREATE ROLE` と `GRANT` はコメントアウトされているので、データベース名とパスワードを置き換えてから実行します。
+管理者が、認証サーバーと同じデータベースへロール `app_participant` を一度作ります。アプリを増やすたびにロールは作りません。ひな型は認証サーバーの [participant-access.sql](https://github.com/npomori/auth-server/blob/main/planning/participant/participant-access.sql) です。`CREATE ROLE` と `GRANT` はコメントアウトされているので、データベース名とパスワードを置き換えてから実行します。
 
 付与する参照権限は次のとおりです。
 

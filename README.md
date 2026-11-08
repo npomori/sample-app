@@ -1,6 +1,6 @@
 # 参加アプリ
 
-[astro-user-webauthn2](https://github.com/czbone/astro-user-webauthn2) の認証サーバーに連携する参加アプリです。ログイン、パスキー、ユーザー作成は行いません。仕様は [participant-app.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant-app.md)、[multi-app-auth.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/multi-app-auth.md)、[app-permissions](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/app-permissions/README.md)、[ロールと認可](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/auth-app-role-authorization-spec.md) です。
+[auth-server](https://github.com/npomori/auth-server) の認証サーバーに連携する参加アプリです。ログイン、パスキー、ユーザー作成は行いません。仕様は [participant-app.md](https://github.com/npomori/auth-server/blob/main/planning/participant-app.md)、[multi-app-auth.md](https://github.com/npomori/auth-server/blob/main/planning/multi-app-auth.md)、[app-permissions](https://github.com/npomori/auth-server/blob/main/planning/app-permissions/README.md)、[ロールと認可](https://github.com/npomori/auth-server/blob/main/planning/auth-app-role-authorization-spec.md) です。
 
 認証の骨格はパッケージ [participant-app-base](../participant-app-base) です。新しい参加アプリの作り方は [docs/building.md](docs/building.md) です。
 

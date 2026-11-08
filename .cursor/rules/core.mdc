@@ -5,13 +5,13 @@ alwaysApply: true
 
 # コア規約
 
-- これは認証サーバー [astro-user-webauthn2](https://github.com/czbone/astro-user-webauthn2) の参加アプリ。認証の骨格は `participant-app-base`。Astro 7 SSR + Node アダプター。画面はサーバー描画の HTML。
+- これは認証サーバー [auth-server](https://github.com/npomori/auth-server) の参加アプリ。認証の骨格は `participant-app-base`。Astro 7 SSR + Node アダプター。画面はサーバー描画の HTML。
 - 入場、Cookie、セッション、共有テーブルの参照、`/callback`、`/logged-out`、`/grants`、`/roles` はライブラリにある。このリポジトリへ戻さない。
 - エントリは `src/fetch.ts`。仮想モジュールと業務の更新を `createParticipantFetch` へ渡すだけ。処理順はライブラリが固定する。`POST /logout` をアプリ側で繰り返さない。
 - 業務画面は `src/pages`。公開ページは `FrontLayout`、管理ページは `AdminLayout`。ヘッダの表示名は integration の `displayName`。画面へ直書きしない。
 - 共有テーブルの Prisma Client はライブラリが生成する。アプリのモデルは足さない。アプリ内ロールは、定義するとき `public` 以外のスキーマをこのアプリがマイグレーションする。
 - 追加の公開 GET と HEAD は integration の `publicPaths`。このアプリは `/` だけ。`/*` と `/grants` と `/roles` は公開にしない。スタイルは Tailwind CSS 4。パッケージマネージャは pnpm。
-- 仕様の正本: このアプリの画面は `docs/`。骨格は `participant-app-base` の `docs/page-access.md`、`docs/layout.md`、`docs/terminology.md`。認証サーバーは [docs/README.md](https://github.com/czbone/astro-user-webauthn2/blob/main/docs/README.md)。
+- 仕様の正本: このアプリの画面は `docs/`。骨格は `participant-app-base` の `docs/page-access.md`、`docs/layout.md`、`docs/terminology.md`。認証サーバーは [docs/README.md](https://github.com/npomori/auth-server/blob/main/docs/README.md)。
 
 ## スタイル
 

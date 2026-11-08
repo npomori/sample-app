@@ -1,6 +1,6 @@
 # 動作確認
 
-この文書では、認証サーバーとの接続後に行う手動確認について説明します。仕様は [participant-app.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant-app.md) を参照してください。参加アプリのホストは `APP_ORIGIN`、認証サーバーのホストは `AUTH_ORIGIN` です。
+この文書では、認証サーバーとの接続後に行う手動確認について説明します。仕様は [participant-app.md](https://github.com/npomori/auth-server/blob/main/planning/participant-app.md) を参照してください。参加アプリのホストは `APP_ORIGIN`、認証サーバーのホストは `AUTH_ORIGIN` です。
 
 ## 前提
 

@@ -14,7 +14,7 @@
 
 ## 位置づけ
 
-プロトコルの正本は、認証サーバーの [participant-app.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant-app.md)、[multi-app-auth.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/multi-app-auth.md)、[app-permissions](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/app-permissions/README.md)、[ロールと認可](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/auth-app-role-authorization-spec.md) です。
+プロトコルの正本は、認証サーバーの [participant-app.md](https://github.com/npomori/auth-server/blob/main/planning/participant-app.md)、[multi-app-auth.md](https://github.com/npomori/auth-server/blob/main/planning/multi-app-auth.md)、[app-permissions](https://github.com/npomori/auth-server/blob/main/planning/app-permissions/README.md)、[ロールと認可](https://github.com/npomori/auth-server/blob/main/planning/auth-app-role-authorization-spec.md) です。
 
 このアプリの画面と確認方法は `docs/` に記載しています。作るものの仕様が食い違う場合は `docs/` に従います。権限の決め方が食い違う場合は [grant.md](../planning/app-permissions/grant.md) に従います。
 

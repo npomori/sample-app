@@ -8,7 +8,7 @@
 
 このアプリが追加する公開パスは `/` だけです。未ログインでも本文を出します。セッションは読みません。`/callback` と `/logged-out`、ファイル名に `.` を含む静的ファイルでも引き渡しは始めません。それ以外の未ログイン画面は本文を出さず、引き渡しを始めます。`/*`、`/grants`、`/roles` は公開にしません。
 
-手動での確認手順は [verification.md](verification.md) を参照してください。仕様は [participant-app.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant-app.md) と [app-permissions](../planning/app-permissions/README.md) に記載されています。
+手動での確認手順は [verification.md](verification.md) を参照してください。仕様は [participant-app.md](https://github.com/npomori/auth-server/blob/main/planning/participant-app.md) と [app-permissions](../planning/app-permissions/README.md) に記載されています。
 
 ## 判定の順序
 
