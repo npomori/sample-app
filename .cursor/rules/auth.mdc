@@ -7,7 +7,7 @@ alwaysApply: true
 
 - 実装は `astro-participant-auth`。このリポジトリでセッションや共有テーブルを再実装しない。
 - ログイン、パスキー、招待、ユーザー作成、`App` / `AppGrant` の変更は認証サーバーだけが行う。
-- 未ログインの画面は `{AUTH_ORIGIN}/auth/handoff` へ送る。`/callback` と `/logged-out` からは引き渡しを始めない。
+- 未ログインの画面は `{AUTH_ORIGIN}/auth/handoff` へ送る。`/callback` と `/logged-out`、および integration の `publicPaths` に一致する GET と HEAD からは引き渡しを始めない。このアプリの `publicPaths` は `/`。
 - セッション Cookie は `__Host-session`。引き渡しの一時 Cookie は `__Host-handoff`。どちらも `Domain` を付けない。
 - セッション Cookie の値は、引き渡し JSON の `token` だけ。新しいトークンは作らない。
 - コードの消費は `GETDEL`。`state` と `redirectUri` は定数時間で比較する。
@@ -16,7 +16,7 @@ alwaysApply: true
 - 付与が無いセッションは TTL を延ばさない。ログアウトだけ通す。
 - パスキーが 0 件の画面は `{AUTH_ORIGIN}/setup-passkey` へ送る。ログアウト以外の更新は 403。ログアウトは全セッションを失効する。
 - 更新の `Origin` は `APP_ORIGIN` と完全一致するときだけ受ける。
-- 公開パスは `/callback` と `/logged-out`、およびファイル名に `.` を含む静的ファイル。未ログインの画面は本文を出さず、引き渡しへ送る。
+- 公開パスは `/callback` と `/logged-out`、ファイル名に `.` を含む静的ファイル、および `publicPaths`。それ以外の未ログイン画面は本文を出さず、引き渡しへ送る。`/*` と `/grants` と `/roles` は公開にしない。
 - 業務の更新は `src/fetch.ts` の `mutations` と `routes` だけ。許可リストに無い更新はライブラリが 404 にする。
 
 ## データ

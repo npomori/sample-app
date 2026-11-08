@@ -22,7 +22,7 @@
 各参加アプリに残すものは次です。
 
 - `APP_ID` とオリジン
-- 業務画面。この参考実装では [src/pages/index.astro](../src/pages/index.astro)
+- 業務画面。この参考実装では公開の [src/pages/index.astro](../src/pages/index.astro) と管理の [src/pages/admin/index.astro](../src/pages/admin/index.astro)
 - ヘッダの表示名。ライブラリの設定として渡し、画面へ直書きしない
 - アプリ内ロールのスキーマと、そのスキーマだけのマイグレーション
 - 業務の更新
@@ -90,7 +90,7 @@ declare namespace App {
 
 アプリ内ロールを定義したアプリは、業務のメソッドとパスを `mutations` に追加し、同じパスを `routes` で登録します。許可リストに無いパスは、Hono へ登録してもミドルウェアが止めます。
 
-公開パスは `/callback` と `/logged-out`、およびファイル名に `.` を含む静的ファイルに固定します。公開パスを増やす設定は置きません。
+固定の公開パスは `/callback` と `/logged-out`、およびファイル名に `.` を含む静的ファイルです。追加の公開 GET と HEAD は integration の `publicPaths` です。既定は空配列です。`/*`、`/grants`、`/roles` は公開にしません。同じパスへの更新は、未認証なら 401「ログインが必要です」です。
 
 ## データ
 
@@ -100,7 +100,7 @@ declare namespace App {
 
 ## 設定にしないこと
 
-[building.md](building.md) の「変えないこと」は、ライブラリのオプションにしません。セッションストアの差し替え、Cookie 名の変更、新しいセッショントークン、公開パスの追加は受け付けません。Redis のコマンドと参照する列は [connections.md](connections.md) のままです。
+[building.md](building.md) の「変えないこと」は、ライブラリのオプションにしません。セッションストアの差し替え、Cookie 名の変更、新しいセッショントークンは受け付けません。追加の公開 GET と HEAD は `publicPaths` だけです。Redis のコマンドと参照する列は [connections.md](connections.md) のままです。
 
 ## 依存
 
@@ -119,12 +119,12 @@ declare namespace App {
 5. `createParticipantFetch` を公開する。仮想モジュールは引数で受け取る
 6. 共有テーブルの Prisma Client をライブラリ内で生成する。マイグレーションは置かない
 7. 骨格のテストをライブラリへ移す
-8. この参考実装を、ライブラリに依存する参加アプリに変える。業務画面は `/` のまま残す
+8. この参考実装を、ライブラリに依存する参加アプリに変える。公開フロントは `/`、管理画面は `/admin` にする
 9. [building.md](building.md) のコピー手順を、ライブラリへの依存に置き換える
 10. [verification.md](verification.md) と [testing.md](testing.md) で確認する
 
 ## この参考実装のあと
 
-移したファイルは、このリポジトリから削除します。`src/fetch.ts` は仮想モジュールを渡すファイルにし、[src/pages/index.astro](../src/pages/index.astro) と表示名「参加アプリ」は残します。
+移したファイルは、このリポジトリから削除します。`src/fetch.ts` は仮想モジュールを渡すファイルにし、公開フロント、管理画面、表示名「参加アプリ」は残します。
 
-仕様の文章は、ライブラリを公開するまでこのリポジトリの `docs/` が正本です。公開するとき、骨格の手順はライブラリの文書へ移します。[access.md](access.md) と [connections.md](connections.md) の判定と接続は、ライブラリが実装する契約として残します。
+骨格の契約は [participant-app-base](https://github.com/npomori/participant-app-base) の `docs/page-access.md`、`docs/layout.md`、`docs/terminology.md` です。このリポジトリの `docs/` は、このアプリの画面、接続、確認手順を記載します。

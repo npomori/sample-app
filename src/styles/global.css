@@ -1,2 +1,6 @@
 @import 'tailwindcss';
-@source '../../../astro-participant-auth/src';
+@source '../../../participant-app-base/src';
+
+@theme {
+  --color-brand: #166534;
+}

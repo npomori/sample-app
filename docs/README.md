@@ -1,6 +1,8 @@
 # 確定資料
 
-このディレクトリには、参加アプリの確定した仕様を記載しています。参考実装をもとに新しい参加アプリを作る手順は、[building.md](building.md) を参照してください。認証骨格をライブラリへ移す手順は、[library.md](library.md) を参照してください。
+このディレクトリには、この参加アプリの画面と接続を記載しています。参考実装をもとに新しい参加アプリを作る手順は、[building.md](building.md) を参照してください。認証骨格をライブラリへ移す手順は、[library.md](library.md) を参照してください。
+
+骨格の契約は [participant-app-base](https://github.com/npomori/participant-app-base) の [page-access.md](https://github.com/npomori/participant-app-base/blob/main/docs/page-access.md)、[layout.md](https://github.com/npomori/participant-app-base/blob/main/docs/layout.md)、[terminology.md](https://github.com/npomori/participant-app-base/blob/main/docs/terminology.md) です。
 
 | 文書 | 内容 |
 | --- | --- |

@@ -16,7 +16,7 @@
   "dependencies": {
     "@astrojs/node": "^11.1.9",
     "astro": "^7.4.5",
-    "astro-participant-auth": "file:../astro-participant-auth",
+    "astro-participant-auth": "file:../participant-app-base",
     "hono": "^4.13.16",
     "pg": "^8.23.1"
   },

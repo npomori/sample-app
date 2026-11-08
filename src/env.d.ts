@@ -5,6 +5,10 @@ declare module 'virtual:astro-participant-auth/config' {
   export const displayName: string
 }
 
+declare module 'virtual:astro-participant-auth/public-paths' {
+  export const publicPaths: readonly string[]
+}
+
 declare module 'virtual:astro-participant-auth/global.css'
 
 declare namespace App {

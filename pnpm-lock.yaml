@@ -173,8 +173,8 @@ importers:
         specifier: ^7.4.5
         version: 7.4.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)
       astro-participant-auth:
-        specifier: file:../astro-participant-auth
-        version: file:../astro-participant-auth(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.4.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(hono@4.13.16)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
+        specifier: file:../participant-app-base
+        version: file:../participant-app-base(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.4.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(hono@4.13.16)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
       hono:
         specifier: ^4.13.16
         version: 4.13.16
@@ -1529,8 +1529,8 @@ packages:
     resolution: {integrity: sha512-WavQUarfgwSbpCq4xsdcIBdX5KArfI2d6DD8EIloJIMthnB1508iNpx4C77EhUyMd03LpEt8HAPzwF/cG0V39g==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
 
-  astro-participant-auth@file:../astro-participant-auth:
-    resolution: {directory: ../astro-participant-auth, type: directory}
+  astro-participant-auth@file:../participant-app-base:
+    resolution: {directory: ../participant-app-base, type: directory}
     peerDependencies:
       astro: ^7.4.1
       hono: ^4.13.13
@@ -4242,7 +4242,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro-participant-auth@file:../astro-participant-auth(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.4.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(hono@4.13.16)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3):
+  astro-participant-auth@file:../participant-app-base(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.4.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(hono@4.13.16)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3):
     dependencies:
       '@prisma/adapter-pg': 7.10.1
       '@prisma/client': 7.10.1(prisma@7.10.1(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3))(typescript@6.0.3)

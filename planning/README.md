@@ -2,7 +2,7 @@
 
 引き渡し、Cookie、Redis、パスキーは、認証サーバーの [multi-app-auth.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/multi-app-auth.md) と [participant-app.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/participant-app.md) に従います。利用許可は [app-permissions](app-permissions/README.md) です。ここにある権限仕様は認証サーバーの同名文書の写しであり、権限の決め方を上書きしません。
 
-共通ロールは認証サーバーの [auth-app-role-authorization-spec.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/auth-app-role-authorization-spec.md) です。このアプリに公開パスはありません。
+共通ロールは認証サーバーの [auth-app-role-authorization-spec.md](https://github.com/czbone/astro-user-webauthn2/blob/main/planning/auth-app-role-authorization-spec.md) です。このアプリの公開パスは `/` です。管理画面は `/admin` です。
 
 このアプリの画面と確認手順は [README.md](../README.md) と [docs/access.md](../docs/access.md) です。
 

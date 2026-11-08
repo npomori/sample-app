@@ -54,4 +54,4 @@ REDIS_URL="redis://app_participant:replace-me@redis-host:6379/"
 
 ## 切り替えの確認
 
-`DATABASE_URL` と `REDIS_URL` を参加アプリ用に変更して再起動したあと、`APP_ORIGIN/` に「ログイン中」と表示され、ログアウトによってそのホストの `__Host-session` と同じユーザーの他のセッションが削除されれば、制限付きの接続で問題ありません。画面の確認手順は [verification.md](verification.md) を参照してください。
+`DATABASE_URL` と `REDIS_URL` を参加アプリ用に変更して再起動したあと、`APP_ORIGIN/admin` に「ログイン中」と表示され、ログアウトによってそのホストの `__Host-session` と同じユーザーの他のセッションが削除されれば、制限付きの接続で問題ありません。画面の確認手順は [verification.md](verification.md) を参照してください。

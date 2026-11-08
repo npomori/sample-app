@@ -6,7 +6,7 @@
 
 1. Astro のサーバー描画プロジェクトを作る。このリポジトリを業務画面の例にする
 2. 認証サーバーへアプリを登録する
-3. `astro-participant-auth` に依存する。公開するまでは、リポジトリを隣に置き `file:../astro-participant-auth` で依存する
+3. `astro-participant-auth` に依存する。公開するまでは、リポジトリを隣に置き `file:../participant-app-base` で依存する
 4. `APP_ID` とオリジンを変える
 5. integration、`src/fetch.ts`、`src/env.d.ts`、CSS の `@source` を接続する
 6. 業務画面を置く
@@ -34,8 +34,9 @@
 
 - ログイン、パスキー儀式、メール、ユーザー作成
 - `App` と `AppGrant` の作成と変更
-- 公開パス。未ログインの画面は本文を出さない
 - 認証サーバーの HTTP 呼び出し
+
+公開にする GET と HEAD は、integration の `publicPaths` だけです。未ログインの更新は本文を出さず、401「ログインが必要です」を返します。
 
 ## 認証サーバーへの登録と環境
 
@@ -76,8 +77,15 @@ export default createParticipantFetch({
 [astro.config.mjs](../astro.config.mjs) で integration を足します。この参考実装の表示名は「参加アプリ」です。
 
 ```ts
-integrations: [participantAuth({ displayName: '参加アプリ' })]
+integrations: [
+  participantAuth({
+    displayName: '参加アプリ',
+    publicPaths: ['/']
+  })
+]
 ```
+
+`publicPaths` を省略すると空配列です。この参考実装は `/` だけを公開にします。`/*`、`/grants`、`/roles` は指定できません。
 
 [src/env.d.ts](../src/env.d.ts) で `App.Locals.access` を `PageAccess` に接続します。
 
@@ -89,19 +97,19 @@ declare namespace App {
 }
 ```
 
-参加アプリの CSS は、ライブラリの `.astro` を `@source` の対象に含めます。この参考実装は [src/styles/global.css](../src/styles/global.css) から、隣の `astro-participant-auth/src` を指します。
+参加アプリの CSS は、ライブラリの `.astro` を `@source` の対象に含めます。この参考実装は [src/styles/global.css](../src/styles/global.css) から、隣の `participant-app-base/src` を指します。`--color-brand` もここに1つ書きます。ライブラリのレイアウトは `virtual:astro-participant-auth/global.css` を、このファイルへ解決します。ファイルが無いときはビルドを止めます。
 
 分岐の一覧は [access.md](access.md) です。入場、引き渡し、ログアウト、`/callback`、`/logged-out`、`/grants`、`/roles`、共有テーブルの参照はライブラリにあります。
 
 ## 業務画面
 
-[src/pages/index.astro](../src/pages/index.astro) の本文を、そのアプリのものに変えます。ヘッダの表示名は integration の `displayName` です。画面へ直書きしません。`/grants` と `/roles` はライブラリが注入します。分け方は [access.md](access.md) です。
+[src/pages/index.astro](../src/pages/index.astro) は公開フロント、[src/pages/admin/index.astro](../src/pages/admin/index.astro) は管理画面です。ヘッダの表示名は integration の `displayName` です。画面へ直書きしません。`/grants` と `/roles` はライブラリが注入します。分け方は [access.md](access.md) です。
 
-業務画面は `src/pages` に追加し、Astro のサーバー側で HTML を描画します。レイアウトは `astro-participant-auth/layout` です。ページでは `Astro.locals.access` だけを参照し、セッションの再解決処理は書きません。`kind` が `public` の場合は権限が解決されていないため、エラーにします。
+業務画面は `src/pages` に追加し、Astro のサーバー側で HTML を描画します。公開ページは `src/layouts/FrontLayout.astro`（ヘッダは `bg-brand`）、管理ページは `src/layouts/AdminLayout.astro`（ヘッダは `bg-black`）です。フロントの「ログイン」は、`publicPaths` に無い `/admin` へ向けます。ページでは `Astro.locals.access` だけを参照し、セッションの再解決処理は書きません。公開ページは `kind` が `public` でもエラーにしません。管理ページは `public` ならエラーにします。
 
 ```astro
 ---
-import Layout from 'astro-participant-auth/layout'
+import Layout from '@/layouts/AdminLayout.astro'
 
 const access = Astro.locals.access
 if (access.kind === 'public') throw new Error('画面の権限が解決されていません')
@@ -110,7 +118,7 @@ if (access.kind === 'public') throw new Error('画面の権限が解決されて
 
 入場後の画面分けは、サーバーが読んだ `User.role` と、後から足すアプリ内ロールで行います。クライアントが送ったロール名では分けません。`kind` が `ok` のときだけ業務を出します。入場できたあとの 403 でも、セッションの TTL は延ばします。
 
-新しい画面は公開パスにしません。`/callback` と `/logged-out` 以外の GET と HEAD は、未ログインなら引き渡しを始めます。
+新しい公開ページは `publicPaths` に足します。`/callback` と `/logged-out` と `publicPaths` 以外の GET と HEAD は、未ログインなら引き渡しを始めます。管理側は `/admin` 配下にまとめます。
 
 ## 更新を足すとき
 
@@ -130,7 +138,8 @@ if (access.kind === 'public') throw new Error('画面の権限が解決されて
 - `state` と `redirectUri` は定数時間で比較します
 - Redis の操作は `GET`、`GETDEL`、`EXPIRE`、`DEL`、`SREM`、`SMEMBERS` だけです
 - `User.role` は入場に使いません。入場後の画面分けに読みます
-- セッションストアの差し替え、Cookie 名の変更、公開パスの追加は、ライブラリのオプションにしません
+- セッションストアの差し替え、Cookie 名の変更、新しいセッショントークンは、ライブラリのオプションにしません
+- 追加の公開 GET と HEAD は `publicPaths` だけです。`/*`、`/grants`、`/roles` は指定できません
 
 ## 確認
 
