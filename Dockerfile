@@ -1,6 +1,6 @@
 # ビルドコンテキストは、このアプリと participant-app-base の親ディレクトリ。
 # 公開するまでは file:../participant-app-base を解決するため、リポジトリ単体をコンテキストにしない。
-# docker build -f astro-webauthn-app2/Dockerfile -t astro-webauthn-app2 .
+# docker build -f sample-app/Dockerfile -t sample-app .
 
 FROM node:24-alpine AS base
 RUN corepack enable && corepack prepare pnpm@latest --activate
@@ -16,15 +16,15 @@ RUN pnpm run db:generate
 FROM base AS dependencies
 WORKDIR /app
 COPY --from=library /participant-app-base /participant-app-base
-COPY astro-webauthn-app2/package.json astro-webauthn-app2/pnpm-lock.yaml astro-webauthn-app2/pnpm-workspace.yaml ./
+COPY sample-app/package.json sample-app/pnpm-lock.yaml sample-app/pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile --prod
 
 FROM base AS build
 WORKDIR /app
 COPY --from=library /participant-app-base /participant-app-base
-COPY astro-webauthn-app2/package.json astro-webauthn-app2/pnpm-lock.yaml astro-webauthn-app2/pnpm-workspace.yaml ./
+COPY sample-app/package.json sample-app/pnpm-lock.yaml sample-app/pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
-COPY astro-webauthn-app2 ./
+COPY sample-app ./
 RUN pnpm run build
 
 FROM node:24-alpine AS production
@@ -34,10 +34,10 @@ RUN addgroup -g 1001 -S nodejs && \
     adduser -S nodejs -u 1001
 
 COPY --from=library --chown=nodejs:nodejs /participant-app-base /participant-app-base
-COPY --chown=nodejs:nodejs astro-webauthn-app2/package.json astro-webauthn-app2/pnpm-lock.yaml astro-webauthn-app2/pnpm-workspace.yaml ./
+COPY --chown=nodejs:nodejs sample-app/package.json sample-app/pnpm-lock.yaml sample-app/pnpm-workspace.yaml ./
 COPY --from=dependencies --chown=nodejs:nodejs /app/node_modules ./node_modules
 COPY --from=build --chown=nodejs:nodejs /app/dist ./dist
-COPY --chown=nodejs:nodejs astro-webauthn-app2/entrypoint.sh astro-webauthn-app2/healthcheck.sh ./
+COPY --chown=nodejs:nodejs sample-app/entrypoint.sh sample-app/healthcheck.sh ./
 RUN chmod +x entrypoint.sh healthcheck.sh
 
 USER nodejs

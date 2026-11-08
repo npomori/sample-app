@@ -1,5 +1,5 @@
 {
-  "name": "astro-webauthn-app2",
+  "name": "sample-app",
   "description": "Participant app that verifies session handoff from a WebAuthn authentication server",
   "private": true,
   "type": "module",

@@ -67,5 +67,5 @@ pnpm dev
 本番イメージのビルドコンテキストは、このリポジトリと `participant-app-base` の親ディレクトリです。公開するまでは `file:` 依存を解決するため、このリポジトリ単体をコンテキストにしません。
 
 ```bash
-docker build -f astro-webauthn-app2/Dockerfile -t astro-webauthn-app2 .
+docker build -f sample-app/Dockerfile -t sample-app .
 ```

@@ -172,12 +172,12 @@ importers:
       astro:
         specifier: ^7.4.7
         version: 7.4.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)
-      astro-participant-auth:
-        specifier: file:../participant-app-base
-        version: file:../participant-app-base(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.4.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(hono@4.13.17)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
       hono:
         specifier: ^4.13.17
         version: 4.13.17
+      participant-app-base:
+        specifier: file:../participant-app-base
+        version: file:../participant-app-base(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.4.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(hono@4.13.17)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
       pg:
         specifier: ^8.23.1
         version: 8.23.1
@@ -1652,12 +1652,6 @@ packages:
     resolution: {integrity: sha512-WavQUarfgwSbpCq4xsdcIBdX5KArfI2d6DD8EIloJIMthnB1508iNpx4C77EhUyMd03LpEt8HAPzwF/cG0V39g==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
 
-  astro-participant-auth@file:../participant-app-base:
-    resolution: {directory: ../participant-app-base, type: directory}
-    peerDependencies:
-      astro: ^7.4.1
-      hono: ^4.13.13
-
   astro@7.4.7:
     resolution: {integrity: sha512-fH54IOaCkZY1paEjygKn8CPfuJ3w8ns7PourcPML5AouJkQuTBqBQ2RbbIbBhutZbg2qn5se6Yl9DYybzqjC0Q==}
     engines: {node: '>=22.23.4', npm: '>=9.6.5', pnpm: '>=7.1.0'}
@@ -2501,6 +2495,12 @@ packages:
 
   package-manager-detector@1.9.0:
     resolution: {integrity: sha512-zAMfbta9nPA8AKkA4WdmNAT8R8s6Dk0/xwPsqNnRidMFcLo1YkLuPDTgs2f64XdzS8vbLNnoJ+uUIkgbz7oRHA==}
+
+  participant-app-base@file:../participant-app-base:
+    resolution: {directory: ../participant-app-base, type: directory}
+    peerDependencies:
+      astro: ^7.4.1
+      hono: ^4.13.13
 
   path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
@@ -4449,28 +4449,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro-participant-auth@file:../participant-app-base(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.4.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(hono@4.13.17)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3):
-    dependencies:
-      '@prisma/adapter-pg': 7.10.1
-      '@prisma/client': 7.10.1(prisma@7.10.1(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3))(typescript@6.0.3)
-      astro: 7.4.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)
-      dotenv: 18.0.9
-      hono: 4.13.17
-      ioredis: 6.0.0
-      pg: 8.23.1
-      prisma: 7.10.1(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
-    transitivePeerDependencies:
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - better-sqlite3
-      - magicast
-      - pg-native
-      - react
-      - react-dom
-      - supports-color
-      - typescript
-
   astro@7.4.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1):
     dependencies:
       '@astrojs/compiler-rs': 0.5.2
@@ -5352,6 +5330,28 @@ snapshots:
   p-queue@10.0.0: {}
 
   package-manager-detector@1.9.0: {}
+
+  participant-app-base@file:../participant-app-base(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.4.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(hono@4.13.17)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3):
+    dependencies:
+      '@prisma/adapter-pg': 7.10.1
+      '@prisma/client': 7.10.1(prisma@7.10.1(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3))(typescript@6.0.3)
+      astro: 7.4.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)
+      dotenv: 18.0.9
+      hono: 4.13.17
+      ioredis: 6.0.0
+      pg: 8.23.1
+      prisma: 7.10.1(@types/node@26.6.6)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
+    transitivePeerDependencies:
+      - '@types/node'
+      - '@types/react'
+      - '@types/react-dom'
+      - better-sqlite3
+      - magicast
+      - pg-native
+      - react
+      - react-dom
+      - supports-color
+      - typescript
 
   path-exists@4.0.0: {}
 
