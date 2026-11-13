@@ -21,3 +21,4 @@ minimumReleaseAgeExclude:
   - '@types/pg@8.20.4'
   - astro@7.3.7 || 7.3.8
   - prettier-plugin-astro@1.1.1
+  - prettier@3.10.1

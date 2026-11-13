@@ -42,11 +42,11 @@
 
 アプリを起動する前に、認証サーバーの管理画面で登録します。
 
-| 項目 | 値 |
-| --- | --- |
-| アプリ ID | `APP_ID` と同一 |
-| オリジン | `APP_ORIGIN`。パスは含めない |
-| 戻り先 URL | `APP_ORIGIN/callback` |
+| 項目           | 値                                          |
+| -------------- | ------------------------------------------- |
+| アプリ ID      | `APP_ID` と同一                             |
+| オリジン       | `APP_ORIGIN`。パスは含めない                |
+| 戻り先 URL     | `APP_ORIGIN/callback`                       |
 | 既定の利用許可 | `allow`、または行が無い利用者を入れない設定 |
 
 アプリごとに変える値は、[.env.example](../.env.example) の `APP_ID` と `APP_ORIGIN` です。`AUTH_ORIGIN` は認証サーバーのオリジンのままにします。これら2つのオリジンには、それぞれ異なる値を設定します。ホスト専用 Cookie はポート番号では分離されないため、`localhost` の別ポートではなく、別のホスト名を使います。
@@ -97,7 +97,7 @@ declare namespace App {
 }
 ```
 
-参加アプリの CSS は、ライブラリの `.astro` を `@source` の対象に含めます。この参考実装は [src/styles/global.css](../src/styles/global.css) から、隣の `participant-app-base/src` を指します。`--color-brand` もここに1つ書きます。ライブラリのレイアウトは `virtual:participant-app-base/global.css` を、このファイルへ解決します。ファイルが無いときはビルドを止めます。
+参加アプリの CSS は、ライブラリの `.astro` を `@source` の対象に含めます。この参考実装は [src/styles/global.css](../src/styles/global.css) から、隣の `participant-app-base/src` を指します。認証サーバーの `src/styles/theme.css` を [src/styles/theme.css](../src/styles/theme.css) にコピーし、Tailwind の直後に読みます。`--color-brand` は `global.css` に1つ書きます。ライブラリのレイアウトは `virtual:participant-app-base/global.css` を、このファイルへ解決します。ファイルが無いときはビルドを止めます。
 
 分岐の一覧は [access.md](access.md) です。入場、引き渡し、ログアウト、`/callback`、`/logged-out`、`/grants`、`/roles`、共有テーブルの参照はライブラリにあります。
 
@@ -105,7 +105,7 @@ declare namespace App {
 
 [src/pages/index.astro](../src/pages/index.astro) は公開フロント、[src/pages/admin/index.astro](../src/pages/admin/index.astro) は管理画面です。ヘッダの表示名は integration の `displayName` です。画面へ直書きしません。`/grants` と `/roles` はライブラリが注入します。分け方は [access.md](access.md) です。
 
-業務画面は `src/pages` に追加し、Astro のサーバー側で HTML を描画します。公開ページは `src/layouts/FrontLayout.astro`（ヘッダは `bg-brand`）、管理ページは `src/layouts/AdminLayout.astro`（ヘッダは `bg-black`）です。フロントの「ログイン」は、`publicPaths` に無い `/admin` へ向けます。ページでは `Astro.locals.access` だけを参照し、セッションの再解決処理は書きません。公開ページは `kind` が `public` でもエラーにしません。管理ページは `public` ならエラーにします。
+業務画面は `src/pages` に追加し、Astro のサーバー側で HTML を描画します。公開ページは `src/layouts/FrontLayout.astro`（ヘッダは `bg-brand`）、管理ページは `src/layouts/AdminLayout.astro`（ヘッダは `bg-black`、幅 16rem の左サイドバー、本文は `lg:ml-64`、余白は `px-4 py-8 lg:px-8`）です。フロントの「ログイン」は、`publicPaths` に無い `/admin` へ向けます。ページでは `Astro.locals.access` だけを参照し、セッションの再解決処理は書きません。公開ページは `kind` が `public` でもエラーにしません。管理ページは `public` ならエラーにします。
 
 ```astro
 ---

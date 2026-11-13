@@ -14,28 +14,28 @@
     "env:check:build": "esbuild participant-app-base/env-check --bundle --platform=node --format=esm --outfile=dist/env-check.mjs"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.11",
-    "astro": "^7.4.7",
+    "@astrojs/node": "^11.1.12",
+    "astro": "^7.4.11",
     "participant-app-base": "file:../participant-app-base",
-    "hono": "^4.13.17",
+    "hono": "^4.13.18",
     "pg": "^8.23.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.3.5",
     "@types/node": "^26.6.6",
-    "@typescript-eslint/parser": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.2",
     "astro-eslint-parser": "^3.2.0",
     "esbuild": "0.28.2",
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.2.1",
     "globals": "^17.14.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "prettier-plugin-astro": "^1.1.2",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.5",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1"
+    "typescript-eslint": "^8.72.2"
   }
 }
