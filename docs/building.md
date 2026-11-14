@@ -6,7 +6,7 @@
 
 1. Astro のサーバー描画プロジェクトを作る。このリポジトリを業務画面の例にする
 2. 認証サーバーへアプリを登録する
-3. 依存先 `participant-app-base` は、公開するまでは隣のリポジトリを `file:../participant-app-base` で入れる
+3. 依存先 `participant-app-base` は、公開するまでは隣のリポジトリを `file:../participant-app-base` で入れる。本番イメージは `participant-app-base.rev` に記録したコミットを GitHub から取得する
 4. `APP_ID` とオリジンを変える
 5. integration、`src/fetch.ts`、`src/env.d.ts`、CSS の `@source` を接続する
 6. 業務画面を置く

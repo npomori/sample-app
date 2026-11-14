@@ -64,8 +64,12 @@ pnpm dev
 
 骨格のユニットテスト、統合テスト、`db:generate` は `participant-app-base` で実行します。接続先と準備は [docs/testing.md](docs/testing.md) です。共有テーブルの変更は認証サーバーだけが行います。`db:migrate` と `db:seed` はありません。
 
-本番イメージのビルドコンテキストは、このリポジトリと `participant-app-base` の親ディレクトリです。公開するまでは `file:` 依存を解決するため、このリポジトリ単体をコンテキストにしません。
+本番イメージのビルドコンテキストは、このリポジトリです。`pnpm install` は隣の作業ツリーを使い、イメージのビルドは [participant-app-base.rev](participant-app-base.rev) のコミットを GitHub から取得して `/participant-app-base` に置きます。イメージに入るのは、GitHub 上のそのコミットです。
 
 ```bash
-docker build -f sample-app/Dockerfile -t sample-app .
+docker build -t sample-app .
 ```
+
+Coolify ではビルドパックを Dockerfile にし、ベースディレクトリとビルドコンテキストをこのリポジトリにします。
+
+ベースの変更をデプロイに載せるときは、そのコミットを GitHub へ出したあと `participant-app-base.rev` を更新します。依存関係が変わったときは、同じコミットの隣ディレクトリでこのアプリのロックファイルを更新してからピンを進めます。
