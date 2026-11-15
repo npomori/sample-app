@@ -51,8 +51,13 @@ RUN chmod +x entrypoint.sh healthcheck.sh
 
 USER nodejs
 
+# 実行時のみ production（base/build には書かない。pnpm install が devDependencies を落とすため）
 ENV NODE_ENV=production
 
+# 待ち受けポートは Coolify の Ports Exposes で指定（PORT 環境変数として注入される）
+# NOTE: EXPOSE / ENV PORT は Dockerfile に書かない（Coolify 設定と競合し docker ps が 3000-3001 になる）
+
+# ヘルスチェック（healthcheck.sh が実行時の PORT を参照）
 HEALTHCHECK --interval=30s --timeout=3s --start-period=90s --retries=3 \
     CMD ./healthcheck.sh
 

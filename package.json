@@ -11,13 +11,16 @@
     "start": "node ./dist/server/entry.mjs",
     "format": "prettier -w .",
     "lint": "eslint .",
-    "env:check:build": "esbuild participant-app-base/env-check --bundle --platform=node --format=esm --outfile=dist/env-check.mjs"
+    "env:check:build": "esbuild participant-app-base/env-check --bundle --platform=node --format=esm --external:dotenv --outfile=dist/env-check.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.12",
+    "@prisma/adapter-pg": "^7.10.1",
     "astro": "^7.4.11",
+    "dotenv": "^18.0.10",
     "participant-app-base": "file:../participant-app-base",
     "hono": "^4.13.18",
+    "ioredis": "^6.0.0",
     "pg": "^8.23.1"
   },
   "devDependencies": {
